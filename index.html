@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%23ffffff'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%233d6a5b'/%3E%3Crect x='1' y='2' width='6' height='2' fill='%233d6a5b'/%3E%3Crect x='2' y='4' width='4' height='2' fill='%233d6a5b'/%3E%3Crect x='3' y='6' width='2' height='1' fill='%233d6a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #faf9f6;
@@ -47,22 +47,22 @@
   }
   .pixel { font-family: 'Press Start 2P', monospace; }
 
-  /* name */
-  h1 {
-    text-align: center;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--ink);
-    margin-bottom: 56px;
-  }
-
-  /* hero: intro left, round avatar right */
+  /* hero: name + intro left, round avatar right */
   .hero {
     display: flex;
     align-items: center;
-    gap: 56px;
+    gap: 52px;
   }
-  .intro { flex: 1; }
+  .left { flex: 1; }
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-align: center;
+    color: var(--ink);
+    margin-bottom: 26px;
+  }
   .intro p { font-size: 14.5px; margin-bottom: 18px; }
   .intro p:last-child { margin-bottom: 0; }
   .intro a {
@@ -73,13 +73,13 @@
   .intro a:hover { border-bottom-color: var(--accent); }
   .avatar {
     flex-shrink: 0;
-    width: 232px; height: 232px;
+    width: 196px; height: 196px;
     border-radius: 50%;
     background: var(--accent-soft);
     display: flex; align-items: center; justify-content: center;
   }
   .avatar img {
-    width: 204px; height: 204px;
+    width: 172px; height: 172px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
@@ -153,7 +153,7 @@
 
   @media (max-width: 640px) {
     .wrap { padding-top: 48px; }
-    .hero { flex-direction: column-reverse; gap: 32px; }
+    .hero { flex-direction: column-reverse; gap: 28px; }
     .links { margin: 36px 0 48px; }
     footer { justify-content: center; text-align: center; }
   }
@@ -162,23 +162,25 @@
 <body>
 <div class="wrap">
 
-  <h1 class="pixel">Yu Shi</h1>
-
-  <!-- INTRO + AVATAR -->
+  <!-- NAME + INTRO + AVATAR -->
   <div class="hero">
-    <div class="intro">
-      <p>
-        I'm a master's student in Computer Science at
-        <a href="https://www.dartmouth.edu" target="_blank" rel="noopener">Dartmouth College</a>,
-        working with Prof. <a href="https://yuwingtai.github.io" target="_blank" rel="noopener">Yu-Wing Tai</a>.
-        My research focuses on computer vision and image generation, especially controllable
-        generation and generative super-resolution with diffusion transformers and flow matching.
-      </p>
-      <p>
-        Before that, I did research in high-dimensional statistics at ShanghaiTech University,
-        which led to an <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">ICML 2025</a>
-        paper on tensor regression.
-      </p>
+    <div class="left">
+      <h1>Yu Shi</h1>
+      <div class="intro">
+        <p>
+          I'm a master's student in Computer Science at
+          <a href="https://www.dartmouth.edu" target="_blank" rel="noopener">Dartmouth College</a>,
+          working with Prof. <a href="https://yuwingtai.github.io" target="_blank" rel="noopener">Yu-Wing Tai</a>.
+          My research focuses on computer vision and image generation, especially controllable
+          generation and generative super-resolution with diffusion transformers and flow matching.
+        </p>
+        <p>
+          Before that, I did research in high-dimensional statistics with Prof. Ziping Zhao
+          at the DSAI Lab, ShanghaiTech University, which led to an
+          <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">ICML 2025</a>
+          paper on tensor regression.
+        </p>
+      </div>
     </div>
     <div class="avatar">
       <img src="assets/avatar.png" alt="Yu Shi">
@@ -196,12 +198,10 @@
     <div class="pub">
       <div class="title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</div>
       <div class="authors"><b>Yu Shi</b>, Yuyao Zhang, Yu-Wing Tai</div>
-      <div class="venue under-review">NeurIPS 2026 (under review)</div>
-    </div>
-    <div class="pub">
-      <div class="title">MRCAN: RL-Aligned LVLM Evidence Generation and Unified Fusion for Multimodal Fake News Detection</div>
-      <div class="authors">Runxuan Tang, Qianyu Chen, <b>Yu Shi</b></div>
-      <div class="venue under-review">AAAI 2027 (under review)</div>
+      <div class="venue under-review">NeurIPS 2026 (under review) &middot;
+        <a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener">arXiv</a> &middot;
+        <a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener">Code</a>
+      </div>
     </div>
     <div class="pub">
       <div class="title">High-Dimensional Tensor Regression with Oracle Properties</div>
@@ -210,11 +210,6 @@
         <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">PMLR</a> &middot;
         <a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener">Code</a>
       </div>
-    </div>
-    <div class="pub">
-      <div class="title">A Survey on Traffic Signal Control Problems with MARL Methods</div>
-      <div class="authors"><b>Yu Shi</b>, et al.</div>
-      <div class="venue">ICIT 2024</div>
     </div>
   </section>
 
