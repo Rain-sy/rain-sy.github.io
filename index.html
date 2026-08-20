@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yu Shi | High-dimensional Statistics</title>
+<meta name="description" content="Yu Shi - PhD student at Dartmouth College. Research: high-dimensional statistics, tensor methods, machine learning theory.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%231a1c2c'/%3E%3Crect x='2' y='1' width='1' height='1' fill='%23ffcd75'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%23ffcd75'/%3E%3Crect x='1' y='2' width='2' height='1' fill='%23ffcd75'/%3E%3Crect x='5' y='2' width='2' height='1' fill='%23ffcd75'/%3E%3Crect x='1' y='3' width='6' height='1' fill='%23ffcd75'/%3E%3Crect x='2' y='4' width='4' height='1' fill='%23ffcd75'/%3E%3Crect x='3' y='5' width='2' height='1' fill='%23ffcd75'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #1a1c2c;
+    --panel: #262b44;
+    --panel-dark: #14162b;
+    --border: #f4f4f4;
+    --gold: #ffcd75;
+    --green: #38b764;
+    --orange: #ef7d57;
+    --blue: #41a6f6;
+    --purple: #b86bff;
+    --text: #f4f4f4;
+    --dim: #9badb7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { image-rendering: pixelated; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Press Start 2P', monospace;
+    line-height: 1.9;
+    min-height: 100vh;
+    position: relative;
+  }
+  /* CRT scanlines */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg, rgba(0,0,0,.14) 0px, rgba(0,0,0,.14) 1px,
+      transparent 1px, transparent 3px);
+    z-index: 999;
+  }
+  /* starfield */
+  .stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, #f4f4f4 50%, transparent 51%),
+      radial-gradient(1px 1px at 70% 15%, #9badb7 50%, transparent 51%),
+      radial-gradient(2px 2px at 85% 60%, #ffcd75 50%, transparent 51%),
+      radial-gradient(1px 1px at 40% 80%, #f4f4f4 50%, transparent 51%),
+      radial-gradient(1px 1px at 10% 65%, #41a6f6 50%, transparent 51%),
+      radial-gradient(2px 2px at 55% 45%, #9badb7 50%, transparent 51%),
+      radial-gradient(1px 1px at 90% 85%, #f4f4f4 50%, transparent 51%),
+      radial-gradient(1px 1px at 30% 10%, #b86bff 50%, transparent 51%);
+    opacity: .5;
+  }
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 20px 64px;
+  }
+  /* pixel border box */
+  .pxbox {
+    background: var(--panel);
+    border: 4px solid var(--border);
+    box-shadow:
+      0 0 0 4px var(--panel-dark),
+      8px 8px 0 4px rgba(0,0,0,.4);
+    padding: 24px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .pxbox .corner {
+    position: absolute; width: 8px; height: 8px; background: var(--gold);
+  }
+  .corner.tl { top: -4px; left: -4px; }
+  .corner.tr { top: -4px; right: -4px; }
+  .corner.bl { bottom: -4px; left: -4px; }
+  .corner.br { bottom: -4px; right: -4px; }
+
+  /* header */
+  .header { text-align: center; }
+  .avatar-frame {
+    display: inline-block;
+    padding: 8px;
+    background: var(--panel-dark);
+    border: 4px solid var(--gold);
+    box-shadow: 6px 6px 0 rgba(0,0,0,.45);
+    margin-bottom: 20px;
+  }
+  .avatar-frame img {
+    display: block;
+    width: 128px; height: 128px;
+    image-rendering: pixelated;
+  }
+  h1 {
+    font-size: 22px;
+    color: var(--gold);
+    text-shadow: 3px 3px 0 #000;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .subtitle {
+    font-size: 9px;
+    color: var(--dim);
+  }
+  .blink { animation: blink 1s steps(1) infinite; color: var(--green); }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* section titles */
+  h2 {
+    font-size: 12px;
+    color: var(--gold);
+    margin-bottom: 18px;
+    text-shadow: 2px 2px 0 #000;
+  }
+  h2::before { content: "> "; color: var(--green); }
+
+  p, li { font-size: 9px; }
+  .dim { color: var(--dim); }
+  .green { color: var(--green); }
+  .orange { color: var(--orange); }
+  .blue { color: var(--blue); }
+  .purple { color: var(--purple); }
+
+  /* skills / research bars */
+  .skill { margin-bottom: 16px; }
+  .skill .label { display: flex; justify-content: space-between; margin-bottom: 6px; }
+  .bar {
+    height: 12px;
+    background: var(--panel-dark);
+    border: 2px solid var(--border);
+    display: flex; gap: 2px; padding: 2px;
+  }
+  .bar i { width: 12px; height: 100%; background: var(--green); display: block; }
+  .bar i.g { background: var(--green); }
+  .bar i.o { background: var(--orange); }
+  .bar i.b { background: var(--blue); }
+
+  /* publication card */
+  .pub {
+    background: var(--panel-dark);
+    border: 3px solid var(--border);
+    padding: 16px;
+  }
+  .pub .badge {
+    display: inline-block;
+    background: var(--orange);
+    color: #000;
+    font-size: 8px;
+    padding: 4px 8px;
+    border: 2px solid #000;
+    box-shadow: 3px 3px 0 rgba(0,0,0,.4);
+    margin-bottom: 12px;
+  }
+  .pub .title { font-size: 10px; color: var(--text); margin-bottom: 10px; }
+  .pub .authors { font-size: 8px; color: var(--dim); margin-bottom: 14px; }
+  .pub .authors b { color: var(--gold); }
+
+  /* link buttons */
+  .links { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .btn {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--panel-dark);
+    border: 3px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 9px;
+    padding: 14px 12px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.45);
+    transition: none;
+  }
+  .btn:hover { background: var(--panel); color: var(--gold); }
+  .btn:active { box-shadow: 1px 1px 0 rgba(0,0,0,.45); transform: translate(3px, 3px); }
+  .btn .ico { font-size: 14px; }
+  .btn small { display: block; font-size: 7px; color: var(--dim); margin-top: 6px; word-break: break-all; }
+  .btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+  .footer {
+    text-align: center;
+    font-size: 8px;
+    color: var(--dim);
+    margin-top: 8px;
+  }
+  .footer .heart { color: var(--orange); }
+
+  @media (max-width: 560px) {
+    .links { grid-template-columns: 1fr; }
+    h1 { font-size: 16px; }
+    .avatar-frame img { width: 96px; height: 96px; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <section class="pxbox header">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <div class="avatar-frame">
+      <img src="assets/avatar.png" alt="Yu Shi avatar">
+    </div>
+    <h1>YU SHI</h1>
+    <p class="subtitle">
+      PhD Student @ Dartmouth College<br><br>
+      <span class="green">$</span> high-dimensional statistics &middot; tensor methods &middot; ML theory
+      <span class="blink">_</span>
+    </p>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="pxbox">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <h2>PLAYER PROFILE</h2>
+    <p class="dim">
+      Hi! I'm Yu Shi. My research lives at the intersection of
+      <span class="green">statistics</span> and
+      <span class="blue">machine learning theory</span>:
+      I design and analyze estimators for structured high-dimensional data
+      (tensors, matrices) and study when simple, interpretable procedures
+      achieve the best possible statistical rates.
+    </p>
+  </section>
+
+  <!-- RESEARCH AREAS -->
+  <section class="pxbox">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <h2>RESEARCH AREAS</h2>
+    <div class="skill">
+      <div class="label"><span class="green">HIGH-DIMENSIONAL STATISTICS</span></div>
+      <div class="bar"><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i></div>
+    </div>
+    <div class="skill">
+      <div class="label"><span class="blue">TENSOR METHODS &amp; ORACLE PROPERTIES</span></div>
+      <div class="bar"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i></div>
+    </div>
+    <div class="skill">
+      <div class="label"><span class="orange">NONCONVEX OPTIMIZATION</span></div>
+      <div class="bar"><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i><i class="o"></i></div>
+    </div>
+    <div class="skill">
+      <div class="label"><span class="purple">MACHINE LEARNING THEORY</span></div>
+      <div class="bar"><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i><i class="b"></i></div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="pxbox">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <h2>SELECTED QUESTS (PUBLICATIONS)</h2>
+    <div class="pub">
+      <span class="badge">ICML 2025</span>
+      <p class="title">High-Dimensional Tensor Regression with Oracle Properties</p>
+      <p class="authors">Wenbin Wang, <b>Yu Shi</b>, Ziping Zhao</p>
+      <p>
+        <a class="blue" href="https://proceedings.mlr.press/v267/wang25co.html">[PMLR]</a>
+        <a class="blue" href="https://openreview.net/forum?id=ue1ptN4kSS">[OpenReview]</a>
+        <a class="blue" href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression">[Code]</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="pxbox">
+    <span class="corner tl"></span><span class="corner tr"></span>
+    <span class="corner bl"></span><span class="corner br"></span>
+    <h2>FIND ME</h2>
+    <div class="links">
+      <a class="btn" href="mailto:yu.shi.gr@dartmouth.edu">
+        <svg viewBox="0 0 16 16"><path d="M1 3h14v2l-7 4-7-4V3zm0 4.5 7 4 7-4V13H1V7.5z"/></svg>
+        <span>EMAIL<small>yu.shi.gr@dartmouth.edu</small></span>
+      </a>
+      <a class="btn" href="https://github.com/Rain-sy" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>GITHUB<small>github.com/Rain-sy</small></span>
+      </a>
+      <!-- TODO: replace '#' with your real Google Scholar profile URL -->
+      <a class="btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16"><path d="M8 0 0 4l8 4 6.5-3.25V10H16V4L8 0zM4 9v3c0 1.66 1.79 3 4 3s4-1.34 4-3V9H4zm4 4.5c-1.4 0-2.5-.65-2.5-1.5s1.1-1.5 2.5-1.5 2.5.65 2.5 1.5-1.1 1.5-2.5 1.5z"/></svg>
+        <span>GOOGLE SCHOLAR<small>coming soon</small></span>
+      </a>
+      <!-- TODO: replace '#' with your real LinkedIn profile URL -->
+      <a class="btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16"><path d="M0 1.8C0 .8.8 0 1.9 0h12.2C15.2 0 16 .8 16 1.8v12.4c0 1-.8 1.8-1.9 1.8H1.9c-1.1 0-1.9-.8-1.9-1.8V1.8zM4.9 13.6V6.2H2.4v7.4h2.5zM3.6 5.2c.9 0 1.4-.6 1.4-1.3-.1-.8-.6-1.3-1.4-1.3-.8 0-1.4.5-1.4 1.3 0 .7.6 1.3 1.4 1.3zm10 8.4h-2.5V9.5c0-1-.4-1.7-1.3-1.7-.7 0-1.1.5-1.3 1-.1.2-.1.4-.1.7v4.1H5.9V6.2h2.5v1c.3-.5 1-1.2 2.3-1.2 1.7 0 2.9 1.1 2.9 3.4v4.2z"/></svg>
+        <span>LINKEDIN<small>coming soon</small></span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    &copy; 2026 YU SHI &middot; PRESS START TO CONTINUE <span class="heart">&#9829;</span>
+  </footer>
+
+</div>
+</body>
+</html>
