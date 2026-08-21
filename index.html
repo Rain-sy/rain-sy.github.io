@@ -8,7 +8,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%23ffffff'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%233d6a5b'/%3E%3Crect x='1' y='2' width='6' height='2' fill='%233d6a5b'/%3E%3Crect x='2' y='4' width='4' height='2' fill='%233d6a5b'/%3E%3Crect x='3' y='6' width='2' height='1' fill='%233d6a5b'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #faf9f6;
@@ -41,62 +41,47 @@
   }
   .wrap {
     position: relative; z-index: 1;
-    max-width: 860px;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 72px 28px 48px;
+    padding: 72px 28px 56px;
   }
   .pixel { font-family: 'Press Start 2P', monospace; }
 
-  /* hero: name + intro left, round avatar right */
+  /* header: round avatar left, name + subtitle + links right */
   .hero {
     display: flex;
     align-items: center;
-    gap: 52px;
+    gap: 44px;
+    margin-bottom: 56px;
   }
-  .left { flex: 1; }
-  h1 {
-    font-family: 'Lora', serif;
-    font-size: 34px;
-    font-weight: 600;
-    letter-spacing: .5px;
-    text-align: center;
-    color: var(--ink);
-    margin-bottom: 26px;
-  }
-  .intro p { font-size: 14.5px; margin-bottom: 18px; }
-  .intro p:last-child { margin-bottom: 0; }
-  .intro a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 2px solid var(--accent-soft);
-  }
-  .intro a:hover { border-bottom-color: var(--accent); }
   .avatar {
     flex-shrink: 0;
-    width: 196px; height: 196px;
+    width: 176px; height: 176px;
     border-radius: 50%;
     background: var(--accent-soft);
     display: flex; align-items: center; justify-content: center;
   }
   .avatar img {
-    width: 172px; height: 172px;
+    width: 154px; height: 154px;
     border-radius: 50%;
     object-fit: cover;
     display: block;
   }
-
-  /* centered links under intro */
-  .links {
-    margin: 44px 0 60px;
-    text-align: center;
-    font-size: 14px;
-    color: var(--line);
+  h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: var(--ink);
+    margin-bottom: 14px;
   }
+  .subtitle { font-size: 14.5px; color: var(--sub); margin-bottom: 12px; }
+  .links { font-size: 13.5px; color: var(--line); }
   .links a {
     color: var(--accent);
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 8px;
   }
+  .links a:first-child { margin-left: 0; }
   .links a:hover { text-decoration: underline; }
 
   /* sections */
@@ -117,9 +102,8 @@
     background-image: linear-gradient(to right, var(--line) 60%, transparent 40%);
     background-size: 10px 2px;
   }
-
-  .interests-section { margin-bottom: 36px; }
-  .interests { font-size: 14px; }
+  section p { font-size: 14px; margin-bottom: 14px; }
+  section p:last-child { margin-bottom: 0; }
 
   /* publications */
   .pub {
@@ -144,53 +128,52 @@
 
   @media (max-width: 640px) {
     .wrap { padding-top: 48px; }
-    .hero { flex-direction: column-reverse; gap: 28px; }
-    .links { margin: 36px 0 48px; }
+    .hero { flex-direction: column; text-align: center; gap: 28px; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <!-- NAME + INTRO + AVATAR -->
-  <div class="hero">
-    <div class="left">
-      <h1>Yu Shi</h1>
-      <div class="intro">
-        <p>
-          I'm a master's student in Computer Science at
-          <a href="https://www.dartmouth.edu" target="_blank" rel="noopener">Dartmouth College</a>,
-          working with Prof. <a href="https://yuwingtai.github.io" target="_blank" rel="noopener">Yu-Wing Tai</a>.
-          My research focuses on computer vision and image generation, especially controllable
-          generation and generative super-resolution with diffusion transformers and flow matching.
-        </p>
-        <p>
-          Before that, I did research in high-dimensional statistics with Prof. Ziping Zhao
-          at the DSAI Lab, ShanghaiTech University, which led to an
-          <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">ICML 2025</a>
-          paper on tensor regression.
-        </p>
-      </div>
-    </div>
+  <!-- HEADER -->
+  <header class="hero">
     <div class="avatar">
       <img src="assets/avatar.png" alt="Yu Shi">
     </div>
-  </div>
+    <div class="id">
+      <h1>YU SHI</h1>
+      <p class="subtitle">M.S. in Computer Science, Dartmouth College</p>
+      <nav class="links">
+        <a href="mailto:rainsyapplication@gmail.com">Email</a>/<a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>/<a href="https://github.com/Rain-sy" target="_blank" rel="noopener">GitHub</a>/<a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- LINKS -->
-  <nav class="links">
-    <a href="mailto:rainsyapplication@gmail.com">Email</a>/<a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>/<a href="https://github.com/Rain-sy" target="_blank" rel="noopener">GitHub</a>/<a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener">LinkedIn</a>
-  </nav>
-
-  <!-- RESEARCH INTERESTS -->
-  <section class="interests-section">
-    <h2>RESEARCH INTERESTS</h2>
-    <p class="interests">Computer vision, image &amp; video generation, diffusion models, VLA, autonomous driving</p>
+  <!-- ABOUT -->
+  <section>
+    <h2>ABOUT</h2>
+    <p>
+      I'm a master's student in Computer Science at Dartmouth College,
+      working with Prof. Yu-Wing Tai. My research focuses on computer vision
+      and image generation, especially controllable generation and generative
+      super-resolution with diffusion transformers and flow matching.
+    </p>
+    <p>
+      Before that, I did research in high-dimensional statistics with Prof. Ziping Zhao
+      at the DSAI Lab, ShanghaiTech University, which led to an ICML 2025 paper
+      on tensor regression.
+    </p>
   </section>
 
-  <!-- PUBLICATIONS -->
+  <!-- RESEARCH INTERESTS -->
   <section>
-    <h2>PUBLICATIONS</h2>
+    <h2>RESEARCH INTERESTS</h2>
+    <p>Computer vision, image &amp; video generation, diffusion models, VLA, autonomous driving</p>
+  </section>
+
+  <!-- SELECTED PUBLICATIONS -->
+  <section>
+    <h2>SELECTED PUBLICATIONS</h2>
     <div class="pub">
       <div class="title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</div>
       <div class="authors"><b>Yu Shi</b>, Yuyao Zhang, Yu-Wing Tai</div>
