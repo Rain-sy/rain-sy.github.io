@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yu Shi | Computer Vision &amp; Image Generation</title>
 <meta name="description" content="Yu Shi - M.S. student in Computer Science at Dartmouth College. Research: computer vision, image generation, diffusion models.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Crect width='8' height='8' fill='%23ffffff'/%3E%3Crect x='2' y='1' width='4' height='1' fill='%233d6a5b'/%3E%3Crect x='1' y='2' width='6' height='2' fill='%233d6a5b'/%3E%3Crect x='2' y='4' width='4' height='2' fill='%233d6a5b'/%3E%3Crect x='3' y='6' width='2' height='1' fill='%233d6a5b'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect x='1' y='0' width='6' height='1' fill='%23e0524c'/%3E%3Crect x='0' y='1' width='8' height='2' fill='%23e0524c'/%3E%3Crect x='0' y='3' width='3' height='2' fill='%232b2b2b'/%3E%3Crect x='3' y='3' width='2' height='2' fill='%23ffffff'/%3E%3Crect x='5' y='3' width='3' height='2' fill='%232b2b2b'/%3E%3Crect x='0' y='5' width='8' height='2' fill='%23ffffff'/%3E%3Crect x='1' y='7' width='6' height='1' fill='%23ffffff'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #faf9f6;
@@ -25,7 +24,7 @@
     background: var(--bg);
     color: var(--ink);
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.75;
   }
   /* subtle pixel-grid background */
@@ -69,13 +68,13 @@
   }
   h1 {
     font-family: 'Press Start 2P', monospace;
-    font-size: 20px;
+    font-size: 22px;
     letter-spacing: 2px;
     color: var(--ink);
     margin-bottom: 14px;
   }
-  .subtitle { font-size: 14.5px; color: var(--sub); margin-bottom: 12px; }
-  .links { font-size: 13.5px; color: var(--line); }
+  .subtitle { font-size: 15.5px; color: var(--sub); margin-bottom: 12px; }
+  .links { font-size: 14.5px; color: var(--line); }
   .links a {
     color: var(--accent);
     text-decoration: none;
@@ -88,7 +87,8 @@
   section { margin-bottom: 44px; }
   h2 {
     font-family: 'Press Start 2P', monospace;
-    font-size: 11px;
+    font-size: 14px;
+    line-height: 1;
     color: var(--accent);
     margin-bottom: 18px;
     display: flex;
@@ -102,7 +102,7 @@
     background-image: linear-gradient(to right, var(--line) 60%, transparent 40%);
     background-size: 10px 2px;
   }
-  section p { font-size: 14px; margin-bottom: 14px; }
+  section p { font-size: 15px; margin-bottom: 14px; }
   section p:last-child { margin-bottom: 0; }
 
   /* publications */
@@ -111,13 +111,13 @@
     border: 2px solid var(--line);
     padding: 16px 18px;
     margin-bottom: 12px;
-    font-size: 13.5px;
+    font-size: 14.5px;
   }
   .pub:hover { border-color: var(--accent); }
   .pub .title { font-weight: 500; color: var(--ink); }
-  .pub .authors { color: var(--sub); font-size: 13px; margin: 2px 0 4px; }
+  .pub .authors { color: var(--sub); font-size: 14px; margin: 2px 0 4px; }
   .pub .authors b { color: var(--ink); font-weight: 500; }
-  .pub .venue { font-size: 12px; color: var(--accent); }
+  .pub .venue { font-size: 13px; color: var(--accent); }
   .pub .venue.under-review { color: var(--sub); }
   .pub a {
     color: var(--accent);
@@ -126,6 +126,12 @@
   }
   .pub a:hover { border-bottom-color: var(--accent); }
 
+  /* hand-drawn pixel pokeball (inline SVG symbol) */
+  .h2ball {
+    width: 24px; height: 24px;
+    flex-shrink: 0;
+    shape-rendering: crispEdges;
+  }
   @media (max-width: 640px) {
     .wrap { padding-top: 48px; }
     .hero { flex-direction: column; text-align: center; gap: 28px; }
@@ -133,6 +139,24 @@
 </style>
 </head>
 <body>
+<!-- hand-drawn pixel pokeball, reused by section titles -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pokeball" viewBox="0 0 16 16" shape-rendering="crispEdges">
+    <rect x="5" y="0" width="6" height="1" fill="#2b2b2b"></rect>
+    <rect x="3" y="1" width="2" height="1" fill="#2b2b2b"></rect><rect x="5" y="1" width="2" height="1" fill="#f2938b"></rect><rect x="7" y="1" width="4" height="1" fill="#e0524c"></rect><rect x="11" y="1" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="2" y="2" width="2" height="1" fill="#2b2b2b"></rect><rect x="4" y="2" width="2" height="1" fill="#f2938b"></rect><rect x="6" y="2" width="6" height="1" fill="#e0524c"></rect><rect x="12" y="2" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="1" y="3" width="2" height="2" fill="#2b2b2b"></rect><rect x="3" y="3" width="10" height="2" fill="#e0524c"></rect><rect x="13" y="3" width="2" height="2" fill="#2b2b2b"></rect>
+    <rect x="0" y="5" width="2" height="1" fill="#2b2b2b"></rect><rect x="2" y="5" width="4" height="1" fill="#e0524c"></rect><rect x="6" y="5" width="4" height="1" fill="#2b2b2b"></rect><rect x="10" y="5" width="4" height="1" fill="#e0524c"></rect><rect x="14" y="5" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="0" y="6" width="7" height="2" fill="#2b2b2b"></rect><rect x="7" y="6" width="2" height="2" fill="#ffffff"></rect><rect x="9" y="6" width="7" height="2" fill="#2b2b2b"></rect>
+    <rect x="0" y="8" width="2" height="1" fill="#2b2b2b"></rect><rect x="2" y="8" width="4" height="1" fill="#ffffff"></rect><rect x="6" y="8" width="4" height="1" fill="#2b2b2b"></rect><rect x="10" y="8" width="4" height="1" fill="#ffffff"></rect><rect x="14" y="8" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="1" y="9" width="2" height="2" fill="#2b2b2b"></rect><rect x="3" y="9" width="10" height="2" fill="#ffffff"></rect><rect x="13" y="9" width="2" height="2" fill="#2b2b2b"></rect>
+    <rect x="2" y="11" width="2" height="1" fill="#2b2b2b"></rect><rect x="4" y="11" width="7" height="1" fill="#ffffff"></rect><rect x="11" y="11" width="1" height="1" fill="#d3cfc3"></rect><rect x="12" y="11" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="3" y="12" width="2" height="1" fill="#2b2b2b"></rect><rect x="5" y="12" width="5" height="1" fill="#ffffff"></rect><rect x="10" y="12" width="1" height="1" fill="#d3cfc3"></rect><rect x="11" y="12" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="4" y="13" width="2" height="1" fill="#2b2b2b"></rect><rect x="6" y="13" width="3" height="1" fill="#ffffff"></rect><rect x="9" y="13" width="2" height="1" fill="#d3cfc3"></rect><rect x="11" y="13" width="2" height="1" fill="#2b2b2b"></rect>
+    <rect x="4" y="14" width="8" height="1" fill="#2b2b2b"></rect>
+    <rect x="5" y="15" width="6" height="1" fill="#2b2b2b"></rect>
+  </symbol>
+</svg>
 <div class="wrap">
 
   <!-- HEADER -->
@@ -142,7 +166,7 @@
     </div>
     <div class="id">
       <h1>YU SHI</h1>
-      <p class="subtitle">M.S. in Computer Science, Dartmouth College</p>
+      <p class="subtitle" style="font-weight: bold">M.S. in Computer Science, Dartmouth College</p>
       <nav class="links">
         <a href="mailto:rainsyapplication@gmail.com">Email</a>/<a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>/<a href="https://github.com/Rain-sy" target="_blank" rel="noopener">GitHub</a>/<a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener">LinkedIn</a>
       </nav>
@@ -151,11 +175,11 @@
 
   <!-- ABOUT -->
   <section>
-    <h2>ABOUT</h2>
-    <p>
+    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>ABOUT</h2>
+    <p style="font-weight: normal;">
       I'm a master's student in Computer Science at Dartmouth College,
-      working with Prof. Yu-Wing Tai. My research focuses on computer vision
-      and image generation, especially controllable generation and generative
+      working with Prof. Yu-Wing Tai. My research focuses on <b>computer vision</b>
+      and <b>image generation</b>, especially controllable generation and generative
       super-resolution with diffusion transformers and flow matching.
     </p>
     <p>
@@ -167,31 +191,33 @@
 
   <!-- RESEARCH INTERESTS -->
   <section>
-    <h2>RESEARCH INTERESTS</h2>
+    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>RESEARCH INTERESTS</h2>
     <p>Computer vision, image &amp; video generation, diffusion models, VLA, autonomous driving</p>
   </section>
 
   <!-- SELECTED PUBLICATIONS -->
   <section>
-    <h2>SELECTED PUBLICATIONS</h2>
+    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>SELECTED PUBLICATIONS</h2>
     <div class="pub">
       <div class="title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</div>
       <div class="authors"><b>Yu Shi</b>, Yuyao Zhang, Yu-Wing Tai</div>
-      <div class="venue under-review">NeurIPS 2026 (under review) &middot;
-        <a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener">arXiv</a> &middot;
+      <div class="venue under-review">NeurIPS 2026 (under review) ·
+        <a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener">arXiv</a> ·
         <a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener">Code</a>
       </div>
     </div>
     <div class="pub">
       <div class="title">High-Dimensional Tensor Regression with Oracle Properties</div>
       <div class="authors">Wenbin Wang, <b>Yu Shi</b>, Ziping Zhao</div>
-      <div class="venue">ICML 2025 &middot;
-        <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">PMLR</a> &middot;
+      <div class="venue">ICML 2025 ·
+        <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">PMLR</a> ·
         <a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener">Code</a>
       </div>
     </div>
   </section>
 
 </div>
-</body>
-</html>
+
+
+
+</body></html>
