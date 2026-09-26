@@ -1,59 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 | Yu Shi</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:#faf9f6; --card:#ffffff; --ink:#2b2b2b; --sub:#6f6f6f;
-    --line:#dcd8cf; --accent:#3d6a5b; --accent-soft:#e7efe9;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0; min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--bg);
-    background-image:
-      linear-gradient(rgba(61,106,91,.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(61,106,91,.045) 1px, transparent 1px);
-    background-size: 24px 24px;
-    color: var(--ink); text-align: center;
-  }
-  .box {
-    background: var(--card);
-    border: 2px solid var(--line);
-    box-shadow: 6px 6px 0 rgba(61,106,91,.12);
-    padding: 48px 56px; max-width: 480px;
-  }
-  h1 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 32px; color: var(--accent); margin: 0 0 20px;
-  }
-  p {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px; color: var(--sub); line-height: 1.9;
-    margin: 0 0 28px;
-  }
-  a {
-    display: inline-block; text-decoration: none;
-    font-family: 'IBM Plex Mono', monospace; font-size: 13px;
-    color: var(--ink); background: var(--accent-soft);
-    border: 2px solid var(--accent); padding: 10px 18px;
-    box-shadow: 3px 3px 0 rgba(61,106,91,.25);
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-  a:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 rgba(61,106,91,.3); }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>404 | Yu Shi</title>
+  <link rel="icon" href="/assets/pokeball.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
-<body>
-  <div class="box">
-    <h1>404</h1>
-    <p>This page doesn't exist.<br>Nothing interesting hides here.</p>
-    <a href="/">&larr; BACK HOME</a>
-  </div>
+<body class="error-page">
+  <main class="error-card"><img class="ball-icon" src="/assets/pokeball.svg" alt="" width="48" height="48"><h1>404</h1><h2>A little off the map.</h2><p>This route hasn't been discovered yet.<br>Let's get you back to familiar territory.</p><a class="button button-primary" href="/">← Back home</a></main>
 </body>
 </html>

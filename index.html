@@ -1,223 +1,122 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yu Shi | Computer Vision &amp; Image Generation</title>
-<meta name="description" content="Yu Shi - M.S. student in Computer Science at Dartmouth College. Research: computer vision, image generation, diffusion models.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect x='1' y='0' width='6' height='1' fill='%23e0524c'/%3E%3Crect x='0' y='1' width='8' height='2' fill='%23e0524c'/%3E%3Crect x='0' y='3' width='3' height='2' fill='%232b2b2b'/%3E%3Crect x='3' y='3' width='2' height='2' fill='%23ffffff'/%3E%3Crect x='5' y='3' width='3' height='2' fill='%232b2b2b'/%3E%3Crect x='0' y='5' width='8' height='2' fill='%23ffffff'/%3E%3Crect x='1' y='7' width='6' height='1' fill='%23ffffff'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&amp;display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #faf9f6;
-    --card: #ffffff;
-    --ink: #2b2b2b;
-    --sub: #6f6f6f;
-    --line: #dcd8cf;
-    --accent: #3d6a5b;
-    --accent-soft: #e7efe9;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 16px;
-    line-height: 1.75;
-  }
-  /* subtle pixel-grid background */
-  body::before {
-    content: "";
-    position: fixed; inset: 0;
-    pointer-events: none;
-    background-image:
-      linear-gradient(to right, rgba(61,106,91,.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(61,106,91,.045) 1px, transparent 1px);
-    background-size: 24px 24px;
-    z-index: 0;
-  }
-  .wrap {
-    position: relative; z-index: 1;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 72px 28px 56px;
-  }
-  .pixel { font-family: 'Press Start 2P', monospace; }
-
-  /* header: round avatar left, name + subtitle + links right */
-  .hero {
-    display: flex;
-    align-items: center;
-    gap: 44px;
-    margin-bottom: 56px;
-  }
-  .avatar {
-    flex-shrink: 0;
-    width: 176px; height: 176px;
-    border-radius: 50%;
-    background: var(--accent-soft);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .avatar img {
-    width: 154px; height: 154px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
-  }
-  h1 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--ink);
-    margin-bottom: 14px;
-  }
-  .subtitle { font-size: 15.5px; color: var(--sub); margin-bottom: 12px; }
-  .links { font-size: 14.5px; color: var(--line); }
-  .links a {
-    color: var(--accent);
-    text-decoration: none;
-    margin: 0 8px;
-  }
-  .links a:first-child { margin-left: 0; }
-  .links a:hover { text-decoration: underline; }
-
-  /* sections */
-  section { margin-bottom: 44px; }
-  h2 {
-    font-family: 'Press Start 2P', monospace;
-    font-size: 14px;
-    line-height: 1;
-    color: var(--accent);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  h2::after {
-    content: "";
-    flex: 1;
-    height: 2px;
-    background-image: linear-gradient(to right, var(--line) 60%, transparent 40%);
-    background-size: 10px 2px;
-  }
-  section p { font-size: 15px; margin-bottom: 14px; }
-  section p:last-child { margin-bottom: 0; }
-
-  /* publications */
-  .pub {
-    background: var(--card);
-    border: 2px solid var(--line);
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    font-size: 14.5px;
-  }
-  .pub:hover { border-color: var(--accent); }
-  .pub .title { font-weight: 500; color: var(--ink); }
-  .pub .authors { color: var(--sub); font-size: 14px; margin: 2px 0 4px; }
-  .pub .authors b { color: var(--ink); font-weight: 500; }
-  .pub .venue { font-size: 13px; color: var(--accent); }
-  .pub .venue.under-review { color: var(--sub); }
-  .pub a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 2px solid var(--accent-soft);
-  }
-  .pub a:hover { border-bottom-color: var(--accent); }
-
-  /* hand-drawn pixel pokeball (inline SVG symbol) */
-  .h2ball {
-    width: 24px; height: 24px;
-    flex-shrink: 0;
-    shape-rendering: crispEdges;
-  }
-  @media (max-width: 640px) {
-    .wrap { padding-top: 48px; }
-    .hero { flex-direction: column; text-align: center; gap: 28px; }
-  }
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f6f5ee">
+  <title>Yu Shi | Computer Vision &amp; Generative AI</title>
+  <meta name="description" content="Yu Shi, M.S. student in Computer Science at Dartmouth College. Computer vision, image generation, and diffusion models. NeurIPS 2026 and ICML 2025. Open to research opportunities.">
+  <meta property="og:title" content="Yu Shi | Computer Vision &amp; Generative AI">
+  <meta property="og:description" content="Exploring how machines see, imagine, and restore. Research at Dartmouth College. NeurIPS 2026 · ICML 2025.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rain-sy.github.io/">
+  <meta property="og:image" content="https://rain-sy.github.io/assets/avatar.png">
+  <link rel="icon" href="assets/pokeball.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&amp;family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script>
+    try {
+      if (localStorage.getItem('yu-shi-theme') === 'dark') document.documentElement.dataset.theme = 'dark';
+    } catch (_) {}
+  </script>
+  <script src="assets/site.js" defer></script>
 </head>
 <body>
-<!-- hand-drawn pixel pokeball, reused by section titles -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="pokeball" viewBox="0 0 16 16" shape-rendering="crispEdges">
-    <rect x="5" y="0" width="6" height="1" fill="#2b2b2b"></rect>
-    <rect x="3" y="1" width="2" height="1" fill="#2b2b2b"></rect><rect x="5" y="1" width="2" height="1" fill="#f2938b"></rect><rect x="7" y="1" width="4" height="1" fill="#e0524c"></rect><rect x="11" y="1" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="2" y="2" width="2" height="1" fill="#2b2b2b"></rect><rect x="4" y="2" width="2" height="1" fill="#f2938b"></rect><rect x="6" y="2" width="6" height="1" fill="#e0524c"></rect><rect x="12" y="2" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="1" y="3" width="2" height="2" fill="#2b2b2b"></rect><rect x="3" y="3" width="10" height="2" fill="#e0524c"></rect><rect x="13" y="3" width="2" height="2" fill="#2b2b2b"></rect>
-    <rect x="0" y="5" width="2" height="1" fill="#2b2b2b"></rect><rect x="2" y="5" width="4" height="1" fill="#e0524c"></rect><rect x="6" y="5" width="4" height="1" fill="#2b2b2b"></rect><rect x="10" y="5" width="4" height="1" fill="#e0524c"></rect><rect x="14" y="5" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="0" y="6" width="7" height="2" fill="#2b2b2b"></rect><rect x="7" y="6" width="2" height="2" fill="#ffffff"></rect><rect x="9" y="6" width="7" height="2" fill="#2b2b2b"></rect>
-    <rect x="0" y="8" width="2" height="1" fill="#2b2b2b"></rect><rect x="2" y="8" width="4" height="1" fill="#ffffff"></rect><rect x="6" y="8" width="4" height="1" fill="#2b2b2b"></rect><rect x="10" y="8" width="4" height="1" fill="#ffffff"></rect><rect x="14" y="8" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="1" y="9" width="2" height="2" fill="#2b2b2b"></rect><rect x="3" y="9" width="10" height="2" fill="#ffffff"></rect><rect x="13" y="9" width="2" height="2" fill="#2b2b2b"></rect>
-    <rect x="2" y="11" width="2" height="1" fill="#2b2b2b"></rect><rect x="4" y="11" width="7" height="1" fill="#ffffff"></rect><rect x="11" y="11" width="1" height="1" fill="#d3cfc3"></rect><rect x="12" y="11" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="3" y="12" width="2" height="1" fill="#2b2b2b"></rect><rect x="5" y="12" width="5" height="1" fill="#ffffff"></rect><rect x="10" y="12" width="1" height="1" fill="#d3cfc3"></rect><rect x="11" y="12" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="4" y="13" width="2" height="1" fill="#2b2b2b"></rect><rect x="6" y="13" width="3" height="1" fill="#ffffff"></rect><rect x="9" y="13" width="2" height="1" fill="#d3cfc3"></rect><rect x="11" y="13" width="2" height="1" fill="#2b2b2b"></rect>
-    <rect x="4" y="14" width="8" height="1" fill="#2b2b2b"></rect>
-    <rect x="5" y="15" width="6" height="1" fill="#2b2b2b"></rect>
-  </symbol>
-</svg>
-<div class="wrap">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="ball" viewBox="0 0 16 16">
+      <path fill="#263a31" d="M5 0h6v1h2v1h1v2h1v2h1v4h-1v2h-1v2h-2v1H4v-1H2v-2H1v-2H0V6h1V4h1V2h1V1h2z"/>
+      <path fill="#e57563" d="M5 2h6v1h2v2h1v2H2V5h1V3h2z"/>
+      <path fill="#fff9ec" d="M2 9h12v2h-1v2h-2v1H5v-1H3v-2H2z"/>
+      <path fill="#263a31" d="M1 7h5V6h4v1h5v2h-5v1H6V9H1z"/>
+      <path fill="#fff9ec" d="M7 7h2v2H7z"/>
+      <path fill="#f6b4a2" d="M5 3h3v1H5v1H4V4h1z"/>
+    </symbol>
+    <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 12 12 3M4 3h8v8" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+    <symbol id="star" viewBox="0 0 16 16"><path fill="currentColor" d="M7 0h2v5h2v2h5v2h-5v2H9v5H7v-5H5V9H0V7h5V5h2z"/></symbol>
+  </svg>
 
-  <!-- HEADER -->
-  <header class="hero">
-    <div class="avatar">
-      <img src="assets/avatar.png" alt="Yu Shi">
-    </div>
-    <div class="id">
-      <h1>YU SHI</h1>
-      <p class="subtitle" style="font-weight: bold">M.S. in Computer Science, Dartmouth College</p>
-      <nav class="links">
-        <a href="mailto:rainsyapplication@gmail.com">Email</a>/<a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>/<a href="https://github.com/Rain-sy" target="_blank" rel="noopener">GitHub</a>/<a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener">LinkedIn</a>
-      </nav>
-    </div>
-  </header>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="Yu Shi, home"><svg class="ball-icon" aria-hidden="true"><use href="#ball"/></svg><span>YU SHI<span class="brand-dot">.</span></span></a>
+      <nav class="main-nav" aria-label="Main navigation"><a href="#about">About</a><a href="#research">Research</a><a href="#contact">Contact</a></nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☾</span><span class="theme-label">Night</span></button>
+    </header>
 
-  <!-- ABOUT -->
-  <section>
-    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>ABOUT</h2>
-    <p style="font-weight: normal;">
-      I'm a master's student in Computer Science at Dartmouth College,
-      working with Prof. Yu-Wing Tai. My research focuses on <b>computer vision</b>
-      and <b>image generation</b>, especially controllable generation and generative
-      super-resolution with diffusion transformers and flow matching.
-    </p>
-    <p>
-      Before that, I did research in high-dimensional statistics with Prof. Ziping Zhao
-      at the DSAI Lab, ShanghaiTech University, which led to an ICML 2025 paper
-      on tensor regression.
-    </p>
-  </section>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <a class="availability" href="#contact"><span class="status-dot" aria-hidden="true"></span>Open to research opportunities <span aria-hidden="true">↗</span></a>
+          <p class="eyebrow">COMPUTER VISION &amp; GENERATIVE AI</p>
+          <h1 id="hero-title">Hi, I'm <span>Yu Shi<span class="name-dot">.</span></span></h1>
+          <p class="hero-lead">Exploring how machines<br class="desktop-break"> <span class="highlight">see, imagine, and restore.</span></p>
+          <p class="hero-description">M.S. student in Computer Science at <strong>Dartmouth College</strong>, working on image generation and diffusion models with Prof. Yu-Wing Tai.</p>
+          <div class="hero-actions"><a class="button button-primary" href="mailto:rainsyapplication@gmail.com">Get in touch <svg aria-hidden="true"><use href="#arrow"/></svg></a><a class="button button-secondary" href="#research">Explore research <span aria-hidden="true">↓</span></a></div>
+          <nav class="social-links" aria-label="Professional profiles">
+            <a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+            <a href="https://github.com/Rain-sy" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            <a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+          </nav>
+        </div>
+        <aside class="trainer-card" aria-label="Trainer profile">
+          <div class="trainer-card-top"><span class="pixel-text">TRAINER CARD</span><span class="card-number">NO. 001</span></div>
+          <div class="trainer-profile">
+            <div class="avatar-frame"><img src="assets/avatar.png" alt="Yu Shi's Kirby profile avatar" width="460" height="460" fetchpriority="high"></div>
+            <div class="trainer-info"><p class="trainer-name pixel-text">YU SHI</p><p>Researcher<br>&amp; curious explorer</p><span class="trainer-location">Dartmouth College</span></div>
+          </div>
+          <div class="trainer-types"><span class="type type-green">VISION</span><span class="type type-coral">GENERATION</span><span class="type type-gold">CURIOSITY</span></div>
+          <div class="trainer-achievements"><span>RESEARCH BADGES</span><div><span title="NeurIPS 2026 Accepted"><svg aria-hidden="true"><use href="#star"/></svg>NeurIPS '26</span><span title="ICML 2025"><svg aria-hidden="true"><use href="#ball"/></svg>ICML '25</span></div></div>
+          <div class="trainer-world" aria-hidden="true"><img src="assets/pixel-world.svg" alt="" width="384" height="112"><span class="world-caption pixel-text">A NEW ADVENTURE AWAITS</span></div>
+          <div class="trainer-card-bottom"><span class="status-dot" aria-hidden="true"></span><span>Ready for the next chapter</span><span aria-hidden="true">✦</span></div>
+        </aside>
+      </section>
 
-  <!-- RESEARCH INTERESTS -->
-  <section>
-    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>RESEARCH INTERESTS</h2>
-    <p>Computer vision, image &amp; video generation, diffusion models, VLA, autonomous driving</p>
-  </section>
+      <a class="news-banner" href="#neurips-paper"><span class="news-label pixel-text"><svg aria-hidden="true"><use href="#star"/></svg>NEW BADGE</span><span class="news-message"><strong>NeurIPS 2026 — Accepted!</strong><span>When Latents Forget Pixels</span></span><span class="news-arrow" aria-hidden="true">↗</span></a>
 
-  <!-- SELECTED PUBLICATIONS -->
-  <section>
-    <h2><svg class="h2ball" aria-hidden="true"><use href="#pokeball"></use></svg>SELECTED PUBLICATIONS</h2>
-    <div class="pub">
-      <div class="title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</div>
-      <div class="authors"><b>Yu Shi</b>, Yuyao Zhang, Yu-Wing Tai</div>
-      <div class="venue under-review">NeurIPS 2026 (under review) ·
-        <a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener">arXiv</a> ·
-        <a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener">Code</a>
-      </div>
-    </div>
-    <div class="pub">
-      <div class="title">High-Dimensional Tensor Regression with Oracle Properties</div>
-      <div class="authors">Wenbin Wang, <b>Yu Shi</b>, Ziping Zhao</div>
-      <div class="venue">ICML 2025 ·
-        <a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener">PMLR</a> ·
-        <a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener">Code</a>
-      </div>
-    </div>
-  </section>
+      <section class="about-section" id="about" aria-labelledby="about-title">
+        <div class="section-heading"><span class="section-index pixel-text">01</span><h2 id="about-title">A little about me</h2><span class="heading-line" aria-hidden="true"></span><svg class="ball-icon" aria-hidden="true"><use href="#ball"/></svg></div>
+        <div class="about-layout">
+          <div class="about-copy">
+            <p>I work at the intersection of <strong>computer vision</strong> and <strong>image generation</strong>. I'm especially interested in controllable generation and generative super-resolution with diffusion transformers and flow matching.</p>
+            <p>Before Dartmouth, I explored high-dimensional statistics with Prof. Ziping Zhao at the DSAI Lab, ShanghaiTech University. That work led to an <strong>ICML 2025</strong> paper on tensor regression.</p>
+            <p class="about-note"><svg aria-hidden="true"><use href="#star"/></svg>From statistical foundations to visual imagination.</p>
+          </div>
+          <aside class="interest-panel" aria-labelledby="interests-title"><div class="panel-label"><span class="pixel-text">RESEARCH KIT</span><span aria-hidden="true">＋</span></div><h3 id="interests-title">Things I'm exploring</h3><ul class="interest-tags"><li>Computer vision</li><li>Image &amp; video generation</li><li>Diffusion models</li><li>Vision-language-action</li><li>Autonomous driving</li></ul><p>Always room for a new idea.</p></aside>
+        </div>
+      </section>
 
-</div>
+      <section class="research-section" id="research" aria-labelledby="research-title">
+        <div class="section-heading"><span class="section-index pixel-text">02</span><h2 id="research-title">Selected research</h2><span class="heading-line" aria-hidden="true"></span><span class="section-count">2 PAPERS</span></div>
+        <p class="section-intro">A few discoveries from the journey so far.</p>
+        <article class="paper-card featured-paper" id="neurips-paper" aria-labelledby="neurips-title">
+          <div class="paper-art vision-art" aria-hidden="true"><span class="art-index pixel-text">01</span><div class="pixel-image pixel-image-small"></div><span class="image-arrow">→</span><div class="pixel-image pixel-image-large"></div><span class="art-caption">PIXELS → POSSIBILITIES</span></div>
+          <div class="paper-body">
+            <div class="paper-meta"><span class="venue-badge">NeurIPS 2026</span><span class="accepted-badge"><span class="status-dot" aria-hidden="true"></span>Accepted</span><span class="paper-topic">IMAGE GENERATION</span></div>
+            <h3 id="neurips-title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</h3>
+            <p class="paper-authors"><strong>Yu Shi</strong>, Yuyao Zhang, Yu-Wing Tai</p>
+            <nav class="paper-links" aria-label="NeurIPS paper resources"><a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener noreferrer">Read paper <svg aria-hidden="true"><use href="#arrow"/></svg></a><a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener noreferrer">Code <svg aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+          </div>
+        </article>
+        <article class="paper-card" aria-labelledby="icml-title">
+          <div class="paper-art tensor-art" aria-hidden="true"><span class="art-index pixel-text">02</span><svg class="tensor-cube" viewBox="0 0 120 110" fill="none"><path d="m60 10 44 24v48l-44 25-44-25V34z" fill="var(--tensor-fill)" stroke="currentColor" stroke-width="2"/><path d="m16 34 44 25 44-25M60 59v48M31 26l44 25v47M45 18l44 25v47M31 90V43l44-25M45 98V51l44-25M16 50l44 25 44-25M16 66l44 25 44-25" stroke="currentColor" stroke-width="1.5"/></svg><span class="art-caption">STRUCTURE IN THE COMPLEX</span></div>
+          <div class="paper-body">
+            <div class="paper-meta"><span class="venue-badge venue-purple">ICML 2025</span><span class="paper-topic">HIGH-DIMENSIONAL STATISTICS</span></div>
+            <h3 id="icml-title">High-Dimensional Tensor Regression with Oracle Properties</h3>
+            <p class="paper-authors">Wenbin Wang, <strong>Yu Shi</strong>, Ziping Zhao</p>
+            <nav class="paper-links" aria-label="ICML paper resources"><a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener noreferrer">Read paper <svg aria-hidden="true"><use href="#arrow"/></svg></a><a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener noreferrer">Code <svg aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+          </div>
+        </article>
+      </section>
 
-
-
-</body></html>
+      <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <div class="contact-copy"><p class="eyebrow">THE NEXT ADVENTURE</p><h2 id="contact-title">Let's build what's next<span>.</span></h2><p>I'm looking for research roles in computer vision and generative AI.<br>Have a role or a research idea in mind? Let's talk.</p><a class="contact-email" href="mailto:rainsyapplication@gmail.com">rainsyapplication@gmail.com <svg aria-hidden="true"><use href="#arrow"/></svg></a></div>
+        <div class="contact-pixel" aria-hidden="true"><svg viewBox="0 0 16 16"><use href="#ball"/></svg><span class="pixel-text">LET'S TEAM UP!</span></div>
+      </section>
+    </main>
+    <footer class="site-footer"><p>© <span id="year">2026</span> Yu Shi</p><p class="footer-note">Made of pixels &amp; possibilities.</p><a href="#" aria-label="Back to top">Back to top <span aria-hidden="true">↑</span></a></footer>
+  </div>
+</body>
+</html>
