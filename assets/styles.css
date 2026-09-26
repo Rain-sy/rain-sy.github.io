@@ -26,7 +26,6 @@ h1, h2, h3, p { margin: 0; }
 svg { display: inline-block; flex-shrink: 0; }
 .svg-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 .pixel-text { font-family: var(--font-pixel); font-size: 9px; line-height: 1.8; }
-.eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.6px; }
 .ball-icon { width: 25px; height: 25px; shape-rendering: crispEdges; }
 .site-shell { width: min(1120px, calc(100% - 96px)); margin: 0 auto; }
 .skip-link { position: absolute; top: -100px; left: 16px; z-index: 10; padding: 12px 20px; background: var(--surface); border: 2px solid var(--ink); }
@@ -41,11 +40,10 @@ svg { display: inline-block; flex-shrink: 0; }
 .theme-icon { font-size: 16px; line-height: 1; }
 .hero { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); align-items: center; gap: 76px; padding: 70px 0 60px; }
 .status-dot { display: inline-block; width: 6px; height: 6px; flex-shrink: 0; background: var(--green); box-shadow: 0 0 0 3px color-mix(in srgb,var(--green) 12%,transparent); }
-.hero .eyebrow { margin-bottom: 18px; color: var(--muted); }
 h1 { font-size: 22px; font-weight: 500; line-height: 1.5; }
-h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); font-size: clamp(30px,3.8vw,46px); line-height: 1.5; letter-spacing: -1px; }
-.hero-lead { font-size: clamp(21px,2.1vw,27px); font-weight: 600; line-height: 1.5; letter-spacing: -.6px; margin-top: 23px; }
-.highlight { color: var(--green); }
+.hero h1 { font-family: var(--font-pixel); font-size: clamp(30px,3.8vw,46px); line-height: 1.5; letter-spacing: -1px; }
+.hero-affiliation { margin-top: 22px; font-size: 16px; line-height: 1.8; color: var(--muted); }
+.hero-affiliation strong { color: var(--ink); font-weight: 600; }
 .hero-description { max-width: 465px; margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.85; }
 .hero-description strong { font-weight: 600; color: var(--ink); }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 15px; padding: 11px 16px; border: 2px solid var(--green); font-size: 12px; font-weight: 600; box-shadow: 3px 3px 0 var(--shadow); transition: transform .15s,box-shadow .15s; }
@@ -63,7 +61,6 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
 .trainer-card::after { bottom: -5px; right: -5px; }
 .trainer-card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 20px; border-bottom: 2px solid var(--ink); background: var(--green-soft); }
 .trainer-card-top .pixel-text { font-size: 8px; color: var(--green); }
-.card-number { font-family: var(--font-mono); color: var(--muted); font-size: 10px; }
 .trainer-profile { display: flex; align-items: center; gap: 23px; padding: 27px 23px 20px; }
 .avatar-frame { flex: 0 0 112px; border: 2px solid var(--ink); padding: 5px; background: var(--coral-soft); box-shadow: 3px 3px 0 var(--line); }
 .avatar-frame img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; }
@@ -83,12 +80,8 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
 .trainer-world { position: relative; height: 122px; border-top: 1px solid var(--line); overflow: hidden; background: #dfead5; }
 .trainer-world > img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: bottom; image-rendering: pixelated; }
 [data-theme='dark'] .trainer-world { filter: brightness(.8); }
-.news-banner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 12px; }
-.news-banner strong { color: var(--green); font-weight: 600; }
-.news-banner > span { color: var(--muted); }
-.about-section { padding-top: 70px; }
+.about-section { padding-top: 30px; }
 .section-heading { display: flex; align-items: center; gap: 16px; }
-.section-index { color: var(--green); font-size: 10px; }
 .section-heading h2 { font-size: 24px; font-weight: 600; letter-spacing: -.7px; }
 .heading-line { flex: 1; height: 1px; margin-left: 6px; background: var(--line); }
 .section-heading .ball-icon { width: 19px; height: 19px; }
@@ -108,13 +101,11 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
 .featured-paper { border-color: var(--green-mid); }
 .paper-art { position: relative; min-height: 215px; border-right: 1px solid var(--line); display: flex; align-items: center; justify-content: center; gap: 12px; overflow: hidden; }
 .vision-art { background-color: var(--green-soft); background-image: linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size: 14px 14px; }
-.art-index { position: absolute; top: 17px; left: 17px; color: var(--green); font-size: 8px; opacity: .7; }
 .art-caption { position: absolute; bottom: 16px; left: 8px; right: 8px; font-family: var(--font-mono); font-size: 8px; text-align: center; color: var(--muted); letter-spacing: .7px; }
 .pixel-image { width: 60px; height: 72px; border: 3px solid var(--surface); outline: 1px solid var(--green-mid); background: linear-gradient(to top,#638655 0 20%,transparent 20%),conic-gradient(from 90deg at 50% 65%,#c0d5a1 0 25%,#89ab72 0 50%,transparent 0) 0 0 / 100% 100%,linear-gradient(#d2e3ce 0 40%,#e8e5c7 40% 58%,#a8c28a 58%); box-shadow: 3px 3px 0 var(--green-mid); }
 .pixel-image-small { width: 41px; height: 48px; background: conic-gradient(#a5c18c 25%,#e5e4c9 0 50%,#789c66 0 75%,#c9d9b9 0) 0 0 / 18px 18px; }
 .image-arrow { font-family: var(--font-mono); font-size: 18px; color: var(--green); }
 .tensor-art { color: var(--purple); background: var(--purple-soft); }
-.tensor-art .art-index { color: var(--purple); }
 .tensor-cube { width: 103px; height: 103px; transform: translateY(-5px); }
 .paper-body { padding: 25px 28px 22px; }
 .paper-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 13px; }
@@ -168,8 +159,7 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
   .theme-toggle { padding: 6px 8px; }
   .theme-label { display: none; }
   .hero { grid-template-columns: 1fr; gap: 35px; padding: 39px 0 36px; }
-  h1 > span { font-size: 42px; }
-  .hero-lead { font-size: 25px; }
+  .hero h1 { font-size: 42px; }
   .hero-description { max-width: 500px; }
   .social-links { margin-top: 23px; }
   .trainer-card { width: min(390px,calc(100% - 8px)); justify-self: center; margin-top: 0; }
@@ -179,10 +169,9 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
   .trainer-types { padding-left: 23px; padding-bottom: 16px; }
   .trainer-achievements { margin: 0 23px 16px; padding-top: 11px; }
   .trainer-world { height: 112px; }
-  .about-section { padding-top: 48px; }
+  .about-section { padding-top: 24px; }
   .section-heading { gap: 12px; }
   .section-heading h2 { font-size: 21px; }
-  .section-index { font-size: 9px; }
   .about-layout { grid-template-columns: 1fr; gap: 24px; margin-top: 22px; }
   .interest-panel { padding: 18px 20px; }
   .research-section { padding-top: 48px; }
@@ -207,9 +196,7 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
   .theme-toggle { min-height: 34px; min-width: 29px; justify-content: center; }
   .brand { font-size: 9px; }
   .brand .ball-icon { width: 19px; height: 19px; }
-  h1 > span { font-size: 36px; }
-  .hero .eyebrow { font-size: 9px; letter-spacing: 1.2px; }
-  .hero-lead { font-size: 22px; }
+  .hero h1 { font-size: 36px; }
   .hero-description { font-size: 13px; }
   .button { font-size: 11px; gap: 10px; padding: 10px 13px; }
   .social-links { gap: 17px; font-size: 10px; }
@@ -225,7 +212,7 @@ h1 > span { display: block; margin-top: 10px; font-family: var(--font-pixel); fo
   .brand { font-size: 8px; gap: 5px; }
   .brand .ball-icon { width: 16px; height: 16px; }
   .theme-toggle { padding: 5px; }
-  h1 > span { font-size: 31px; }
+  .hero h1 { font-size: 31px; }
   .trainer-profile { gap: 15px; padding-left: 17px; padding-right: 17px; }
   .avatar-frame { flex-basis: 87px; }
   .trainer-name { font-size: 10px; }
