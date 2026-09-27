@@ -47,34 +47,35 @@
     </header>
 
     <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <h1 id="hero-title">Yu Shi</h1>
-          <p class="hero-affiliation">M.S. student in Computer Science<br><strong>Dartmouth College</strong></p>
-          <p class="hero-description">Computer vision, image generation, and diffusion models.</p>
-          <nav class="social-links" aria-label="Professional profiles">
-            <a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
-            <a href="https://github.com/Rain-sy" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            <a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-          </nav>
-        </div>
-        <aside class="trainer-card" aria-label="Trainer profile">
-          <div class="trainer-card-top"><span class="pixel-text">PROFILE</span></div>
-          <div class="trainer-profile">
-            <div class="avatar-frame"><img src="assets/avatar.png" alt="Yu Shi's Kirby profile avatar" width="460" height="460" fetchpriority="high"></div>
-            <div class="trainer-info"><p class="trainer-name pixel-text">YU SHI</p><p>Computer Vision<br>&amp; Generative AI</p><span class="trainer-location">Dartmouth College</span></div>
+      <section class="profile-card" id="profile" aria-labelledby="profile-title">
+        <div class="profile-card-top"><p id="profile-title" class="pixel-text">PROFILE</p><svg class="ball-icon" aria-hidden="true"><use href="#ball"/></svg></div>
+        <div class="profile-body">
+          <div class="avatar-frame"><img src="assets/avatar.png" alt="Yu Shi's Kirby profile avatar" width="460" height="460" fetchpriority="high"></div>
+          <div class="profile-info">
+            <h1>Yu Shi</h1>
+            <p class="profile-affiliation">M.S. student in Computer Science · <strong>Dartmouth College</strong></p>
+            <p class="profile-fields"><span>Research</span>Computer vision · Image generation · Diffusion models</p>
+            <p class="profile-bio">I work with Prof. Yu-Wing Tai on controllable image generation and generative super-resolution.</p>
           </div>
-          <div class="trainer-types"><span class="type type-green">VISION</span><span class="type type-coral">GENERATION</span></div>
-          <div class="trainer-achievements"><span>PUBLICATIONS</span><div><span title="NeurIPS 2026 Accepted"><svg aria-hidden="true"><use href="#star"/></svg>NeurIPS '26</span><span title="ICML 2025"><svg aria-hidden="true"><use href="#ball"/></svg>ICML '25</span></div></div>
-          <div class="trainer-world" aria-hidden="true"><img src="assets/pixel-world.svg" alt="" width="384" height="112"></div>
-        </aside>
+        </div>
+        <div class="profile-footer">
+          <div class="profile-links">
+            <nav class="social-links" aria-label="Professional profiles">
+              <a href="https://scholar.google.com/citations?user=AO7PgkQAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/Rain-sy" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+              <a href="https://www.linkedin.com/in/yu-shi-5250a3383/en" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            </nav>
+            <p class="profile-contact" id="contact"><span>Contact</span><a href="mailto:rainsyapplication@gmail.com">rainsyapplication@gmail.com</a></p>
+          </div>
+          <div class="profile-world" aria-hidden="true"><img src="assets/pixel-world.svg" alt="" width="384" height="112"></div>
+        </div>
       </section>
 
       <section class="about-section" id="about" aria-labelledby="about-title">
         <div class="section-heading"><h2 id="about-title">About</h2><span class="heading-line" aria-hidden="true"></span><svg class="ball-icon" aria-hidden="true"><use href="#ball"/></svg></div>
         <div class="about-layout">
           <div class="about-copy">
-            <p>I am a master's student in Computer Science at Dartmouth College, working with Prof. Yu-Wing Tai. My research focuses on <strong>computer vision</strong> and <strong>image generation</strong>, particularly controllable generation and generative super-resolution using diffusion transformers and flow matching.</p>
+            <p>My current research uses diffusion transformers and flow matching for <strong>controllable generation</strong> and <strong>generative super-resolution</strong>.</p>
             <p>Previously, I conducted research in high-dimensional statistics with Prof. Ziping Zhao at the DSAI Lab, ShanghaiTech University. This work resulted in an <strong>ICML 2025</strong> paper on tensor regression.</p>
           </div>
           <aside class="interest-panel" aria-labelledby="interests-title"><h3 id="interests-title">Research interests</h3><ul class="interest-tags"><li>Computer vision</li><li>Image &amp; video generation</li><li>Diffusion models</li><li>Vision-language-action</li><li>Autonomous driving</li></ul></aside>
@@ -103,9 +104,6 @@
         </article>
       </section>
 
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact</h2><a class="contact-email" href="mailto:rainsyapplication@gmail.com">rainsyapplication@gmail.com</a>
-      </section>
     </main>
     <footer class="site-footer"><p>© <span id="year">2026</span> Yu Shi</p><a href="#" aria-label="Back to top">Back to top <span aria-hidden="true">↑</span></a></footer>
   </div>
