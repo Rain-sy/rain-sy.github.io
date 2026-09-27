@@ -35,7 +35,6 @@
       <path fill="#fff9ec" d="M7 7h2v2H7z"/>
       <path fill="#f6b4a2" d="M5 3h3v1H5v1H4V4h1z"/>
     </symbol>
-    <symbol id="arrow" viewBox="0 0 16 16"><path d="M3 12 12 3M4 3h8v8" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
     <symbol id="star" viewBox="0 0 16 16"><path fill="currentColor" d="M7 0h2v5h2v2h5v2h-5v2H9v5H7v-5H5V9H0V7h5V5h2z"/></symbol>
   </svg>
 
@@ -85,12 +84,17 @@
       <section class="research-section" id="research" aria-labelledby="research-title">
         <div class="section-heading"><h2 id="research-title">Selected Publications</h2><span class="heading-line" aria-hidden="true"></span><span class="section-count">2 PAPERS</span></div>
         <article class="paper-card featured-paper" id="neurips-paper" aria-labelledby="neurips-title">
-          <div class="paper-art vision-art" aria-hidden="true"><div class="pixel-image pixel-image-small"></div><span class="image-arrow">→</span><div class="pixel-image pixel-image-large"></div><span class="art-caption">SUPER-RESOLUTION</span></div>
+          <a class="paper-art pgsr-art" href="https://github.com/Rain-sy/PGSR#visual-results" target="_blank" rel="noopener noreferrer" aria-label="View PGSR visual results">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/pgsr-teaser.png">
+              <img src="assets/pgsr-window-tracery.gif" alt="PGSR super-resolution visual comparison" width="560" height="560" loading="lazy" decoding="async">
+            </picture>
+          </a>
           <div class="paper-body">
-            <div class="paper-meta"><span class="venue-badge">NeurIPS 2026</span><span class="accepted-badge"><span class="status-dot" aria-hidden="true"></span>Accepted</span><span class="paper-topic">IMAGE GENERATION</span></div>
+            <div class="paper-meta"><span class="venue-badge">NeurIPS 2026</span><span class="paper-topic">IMAGE GENERATION</span></div>
             <h3 id="neurips-title">When Latents Forget Pixels: Restoring Fidelity in Diffusion Transformer Super-Resolution</h3>
             <p class="paper-authors"><strong>Yu Shi</strong>, Yuyao Zhang, Yu-Wing Tai</p>
-            <nav class="paper-links" aria-label="NeurIPS paper resources"><a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener noreferrer">Read paper <svg aria-hidden="true"><use href="#arrow"/></svg></a><a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener noreferrer">Code <svg aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+            <nav class="paper-links" aria-label="NeurIPS paper resources"><a href="https://arxiv.org/abs/2608.09133" target="_blank" rel="noopener noreferrer">Paper</a><a href="https://github.com/Rain-sy/PGSR" target="_blank" rel="noopener noreferrer">Code</a></nav>
           </div>
         </article>
         <article class="paper-card" aria-labelledby="icml-title">
@@ -99,7 +103,7 @@
             <div class="paper-meta"><span class="venue-badge venue-purple">ICML 2025</span><span class="paper-topic">HIGH-DIMENSIONAL STATISTICS</span></div>
             <h3 id="icml-title">High-Dimensional Tensor Regression with Oracle Properties</h3>
             <p class="paper-authors">Wenbin Wang, <strong>Yu Shi</strong>, Ziping Zhao</p>
-            <nav class="paper-links" aria-label="ICML paper resources"><a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener noreferrer">Read paper <svg aria-hidden="true"><use href="#arrow"/></svg></a><a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener noreferrer">Code <svg aria-hidden="true"><use href="#arrow"/></svg></a></nav>
+            <nav class="paper-links" aria-label="ICML paper resources"><a href="https://proceedings.mlr.press/v267/wang25co.html" target="_blank" rel="noopener noreferrer">Paper</a><a href="https://github.com/Rain-sy/High-Dimensional-Tensor-Regression" target="_blank" rel="noopener noreferrer">Code</a></nav>
           </div>
         </article>
       </section>
